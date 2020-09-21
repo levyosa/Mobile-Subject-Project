@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">TrabalhoFinalDM</string>
+
+    <string name="moneySymbol">$</string>
+    <string name="xx_xx">00.00</string>
+    <string name="productname">ProductName</string>
+</resources>

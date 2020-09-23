@@ -1,5 +1,6 @@
 package com.example.trabalhofinaldm.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,7 +29,7 @@ class ProductAdapter(private val listener: ProductAdapterListener):
             }
 
             override fun onFailure(call: Call<List<Product>>, t: Throwable) {
-
+                Log.d("enqueue","failed",t)
             }
         })
 

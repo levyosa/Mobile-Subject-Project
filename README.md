@@ -1,7 +1,7 @@
 # TrabalhoFinalDM
 ## Aplicativo voltado a supermercados
 
-### Funcionalidade específica:
+### Funcionalidades específicas:
  - deverá servir como um display de produtos e preços, com outras funcionalidades.
  - deverá permitir que o usuário visualize os preços dos produtos
  - deverá permitir que o usuário adicione itens a uma lista, aqui referida como cestinha.

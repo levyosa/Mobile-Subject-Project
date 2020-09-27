@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.trabalhofinaldm.R
@@ -24,10 +26,13 @@ class ProductListFragment : Fragment(),ProductAdapterListener {
         var view = inflater.inflate(R.layout.fragment_product_list, container, false)
 
 
+
         adapter = ProductAdapter(this)
         view.rvProducts.adapter = adapter
         view.rvProducts.layoutManager = LinearLayoutManager(activity,RecyclerView.VERTICAL,false)
-
+        view.btBasket.setOnClickListener{
+            findNavController().navigate(R.id.navigateTo_BasketFragment)
+        }
 
 
         return view

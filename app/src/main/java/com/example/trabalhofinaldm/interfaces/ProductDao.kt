@@ -11,8 +11,12 @@ interface ProductDao {
     @Query("SELECT * FROM products")
     fun getAll(): List<Product>
 
+    @Query("SELECT * FROM products WHERE id IN (:ids)")
+    fun getAllByIds(ids:IntArray):List<Product>
+    
+
     @Insert
-    fun insert(product: Product)
+    fun insertAll(varargpeople:Product)
 
     @Delete
     fun delete(product: Product)

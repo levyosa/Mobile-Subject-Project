@@ -1,12 +1,17 @@
 package com.example.trabalhofinaldm.adapters
 
+import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import androidx.room.Dao
+import androidx.room.Room
 import com.example.trabalhofinaldm.R
+import com.example.trabalhofinaldm.database.AppDatabase
 import com.example.trabalhofinaldm.interfaces.ProductAdapterListener
+import com.example.trabalhofinaldm.interfaces.ProductDao
 import com.example.trabalhofinaldm.models.Product
 import com.example.trabalhofinaldm.util.ProductServiceGenerator
 import kotlinx.android.synthetic.main.item_product.view.*
@@ -15,23 +20,44 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class ProductAdapter(private val listener: ProductAdapterListener):
+class ProductAdapter(val listener: ProductAdapterListener,context: Context):
     RecyclerView.Adapter<ProductAdapter.ViewHolder> () {
     private var products = mutableListOf<Product>()
     private val service = ProductServiceGenerator.getService()
 
+    private var dao: ProductDao
+    private var basket_products = mutableListOf<Product>()
+
+
+
+
 
     init {
+
+        ////////////////////////////////// RETROFIT
         service.getAll().enqueue(object: Callback<List<Product>>{
             override fun onResponse(call: Call<List<Product>>, response: Response<List<Product>>) {
                 products = response.body()!!.toMutableList()
                 notifyDataSetChanged()
             }
-
             override fun onFailure(call: Call<List<Product>>, t: Throwable) {
                 Log.d("enqueue","failed",t)
             }
         })
+
+        //////////////////////////////////////////
+
+        //////////////////////////////////ROOM
+        val db = Room.databaseBuilder(
+            context,
+            AppDatabase::class.java,
+            "local-products-db"
+        ).allowMainThreadQueries().build()
+        dao = db.productDao()
+        basket_products = dao.getAll().toMutableList()
+
+        //////////////////////////////////////////
+
 
     }
 

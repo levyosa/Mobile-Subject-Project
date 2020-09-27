@@ -27,7 +27,7 @@ class ProductListFragment : Fragment(),ProductAdapterListener {
 
 
 
-        adapter = ProductAdapter(this)
+        adapter = ProductAdapter(this,requireContext())
         view.rvProducts.adapter = adapter
         view.rvProducts.layoutManager = LinearLayoutManager(activity,RecyclerView.VERTICAL,false)
         view.btBasket.setOnClickListener{

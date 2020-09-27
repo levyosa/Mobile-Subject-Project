@@ -5,11 +5,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebView
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Dao
 import androidx.room.Room
 import com.example.trabalhofinaldm.R
 import com.example.trabalhofinaldm.database.AppDatabase
+import com.example.trabalhofinaldm.fragments.ProductListFragment
 import com.example.trabalhofinaldm.interfaces.ProductAdapterListener
 import com.example.trabalhofinaldm.interfaces.ProductDao
 import com.example.trabalhofinaldm.models.Product
@@ -26,6 +29,7 @@ class ProductAdapter(val listener: ProductAdapterListener,context: Context):
     private val service = ProductServiceGenerator.getService()
 
     private var dao: ProductDao
+    private var handledProduct: Product? = null
     private var basket_products = mutableListOf<Product>()
 
 
@@ -58,9 +62,9 @@ class ProductAdapter(val listener: ProductAdapterListener,context: Context):
 
         //////////////////////////////////////////
 
+//        a idéia é que haja uma condição, que dependendo da fragment que está na tela, utilize o serviço diferente.
 
     }
-
 
 
     override fun getItemViewType(position: Int): Int = R.layout.item_product
@@ -88,12 +92,17 @@ class ProductAdapter(val listener: ProductAdapterListener,context: Context):
             itemView.tvProductName.text = product.name
             itemView.tvProductPrice.text = product.price.toString()
 
-            itemView.setOnClickListener{
 
+            itemView.setOnClickListener{
+                handledProduct = product
+                var dummy:Product = Product(handledProduct!!.name,handledProduct!!.price)
+                dao.insertAll(dummy)
+                Log.d("dao","["+dao.getAll().size+"]"+dao.getAll().toString())
             }
         }
 
     }
+
 
 
 }

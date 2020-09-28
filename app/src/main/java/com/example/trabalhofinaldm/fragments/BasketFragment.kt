@@ -8,13 +8,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.trabalhofinaldm.R
-import com.example.trabalhofinaldm.adapters.ProductAdapter
+import com.example.trabalhofinaldm.adapters.BasketProductAdapter
 import com.example.trabalhofinaldm.interfaces.ProductAdapterListener
 import com.example.trabalhofinaldm.models.Product
 import kotlinx.android.synthetic.main.fragment_basket.view.*
 
 class BasketFragment : Fragment(),ProductAdapterListener {
-    private lateinit var adapter: ProductAdapter
+    private lateinit var adapter: BasketProductAdapter
 
 
     override fun onCreateView(
@@ -26,7 +26,7 @@ class BasketFragment : Fragment(),ProductAdapterListener {
         var view = inflater.inflate(R.layout.fragment_basket, container, false)
 
 
-        adapter = ProductAdapter(this,requireContext())
+        adapter = BasketProductAdapter(this,requireContext())
         view.rvBasket.adapter = adapter
         view.rvBasket.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL,false)
 

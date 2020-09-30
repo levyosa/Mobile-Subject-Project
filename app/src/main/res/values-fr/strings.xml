@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TrabalhoFinalDM</string>
+    <string name="moneySymbol">€</string>
+    <string name="Basket">Panier</string>
+    <string name="purchase_subtotal">Sous-total d\'achat</string>
+</resources>

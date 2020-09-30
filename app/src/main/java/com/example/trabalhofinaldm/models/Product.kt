@@ -8,7 +8,7 @@ import java.io.Serializable
 data class Product (
 //var id:Long,
 
-    @ColumnInfo(name= "name")  var name:String,
+    @ColumnInfo(name= "name")  val name:String,
     @ColumnInfo(name= "price") var price: Double
 
 ): Serializable{

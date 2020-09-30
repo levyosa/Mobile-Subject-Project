@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
 import com.example.trabalhofinaldm.R
@@ -27,6 +28,7 @@ class ProductAdapter(val listener: ProductAdapterListener,context: Context):
     private var dao: ProductDao
     private var handledProduct: Product? = null
     private var basketProducts = mutableListOf<Product>()
+
 
 
 
@@ -57,6 +59,8 @@ class ProductAdapter(val listener: ProductAdapterListener,context: Context):
         basketProducts = dao.getAll().toMutableList()
 
         //////////////////////////////////////////
+
+
 
 
     }
@@ -90,10 +94,14 @@ class ProductAdapter(val listener: ProductAdapterListener,context: Context):
 
             itemView.setOnClickListener{
                 handledProduct = product
-                var dummy:Product = Product(handledProduct!!.name,handledProduct!!.price)
+                var dummy = Product(handledProduct!!.name,handledProduct!!.price)
                 dao.insertAll(dummy)
                 Log.d("dao","["+dao.getAll().size+"]"+dao.getAll().toString())
+                listener.onProductClicked(dummy)
+
+
             }
+
 
         }
 

@@ -12,6 +12,7 @@ import com.example.trabalhofinaldm.database.AppDatabase
 import com.example.trabalhofinaldm.interfaces.ProductAdapterListener
 import com.example.trabalhofinaldm.interfaces.ProductDao
 import com.example.trabalhofinaldm.models.Product
+import kotlinx.android.synthetic.main.fragment_basket.view.*
 import kotlinx.android.synthetic.main.item_product.view.*
 
 
@@ -22,6 +23,7 @@ class BasketProductAdapter(val listener: ProductAdapterListener, context: Contex
     private var handledProduct: Product? = null
     private var basketProducts = mutableListOf<Product>()
 
+
     init {
         val db = Room.databaseBuilder(
             context,
@@ -30,6 +32,7 @@ class BasketProductAdapter(val listener: ProductAdapterListener, context: Contex
         ).allowMainThreadQueries().build()
         dao = db.productDao()
         basketProducts = dao.getAll().toMutableList()
+
     }
 
 
@@ -54,12 +57,18 @@ class BasketProductAdapter(val listener: ProductAdapterListener, context: Contex
             itemView.tvProductPrice.text = product.price.toString()
 
 
+
             itemView.setOnClickListener{
                 handledProduct = product
                 var dummy:Product = Product(handledProduct!!.name,handledProduct!!.price)
                 dao.insertAll(dummy)
                 Log.d("dao","["+dao.getAll().size+"]"+dao.getAll().toString())
+
             }
+
+
+
+
         }
     }
 }

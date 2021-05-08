@@ -1,4 +1,4 @@
-# TrabalhoFinalDM
+# TrabalhoFinal DIspositivos Móveis
 ## Aplicativo voltado a supermercados
 
 ### Funcionalidades específicas:
